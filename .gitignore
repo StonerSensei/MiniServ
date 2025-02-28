@@ -1,0 +1,15 @@
+# Node.js dependencies
+frontend/node_modules/
+
+# Golang dependencies
+backend/vendor/
+backend/*.exe
+backend/*.log
+backend/*.out
+
+# PostgreSQL data (if using volume)
+pgdata/
+
+# Docker and environment files
+docker-compose.override.yml
+.env
