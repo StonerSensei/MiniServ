@@ -27,7 +27,7 @@ func main() {
 
 	// FileServer(http.Dir("qrcode")) --> Creates a file server from qr code directory
 	// http.Handle("/qrcode/", http.StripPrefix("/qrcode/", fs)) It maps http://localhost:8080/qrcode/ to server files
-
+	// Change reflecting or not
 	fs := http.FileServer(http.Dir("qrcode"))
 	http.Handle("/qrcode/", http.StripPrefix("/qrcode/", fs))
 	go utils.CleanUpQR()
