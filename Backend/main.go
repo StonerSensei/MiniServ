@@ -25,6 +25,8 @@ func main() {
 	http.HandleFunc("/upload", utils.EnableCORS(handlers.FileUploadHandler))
 	http.HandleFunc("/files/", utils.EnableCORS(handlers.ServeFileHandler))
 
+	http.HandleFunc("/paste", utils.EnableCORS(handlers.SavePasteHandler))
+	http.HandleFunc("/paste/", utils.EnableCORS(handlers.GetPasteHandler))
 	// FileServer(http.Dir("qrcode")) --> Creates a file server from qr code directory
 	// http.Handle("/qrcode/", http.StripPrefix("/qrcode/", fs)) It maps http://localhost:8080/qrcode/ to server files
 	// Change reflecting or not

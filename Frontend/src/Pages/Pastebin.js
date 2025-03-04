@@ -4,25 +4,16 @@ import axios from "axios";
 function Pastebin() {
   const [content, setContent] = useState("");
   const [pasteID, setPasteID] = useState(null);
-  const [retrievedPaste, setRetrievedPaste] = useState("");
+  const [shareableURL, setShareableURL] = useState("");
 
-  // Create paste
+  // Create a new paste
   const createPaste = async () => {
     try {
       const response = await axios.post("http://localhost:8080/paste", { content });
       setPasteID(response.data.id);
+      setShareableURL(`http://localhost:3000/paste/${response.data.id}`); // ✅ React URL
     } catch (error) {
       console.error("Failed to create paste:", error);
-    }
-  };
-
-  // Get paste
-  const getPaste = async (id) => {
-    try {
-      const response = await axios.get(`http://localhost:8080/paste/${id}`);
-      setRetrievedPaste(response.data.content);
-    } catch (error) {
-      console.error("Paste not found:", error);
     }
   };
 
@@ -34,15 +25,8 @@ function Pastebin() {
 
       {pasteID && (
         <div className="mt-4">
-          <h5>✅ Paste Created! Share this ID: {pasteID}</h5>
-          <button className="btn btn-success mt-2" onClick={() => getPaste(pasteID)}>View Paste</button>
-        </div>
-      )}
-
-      {retrievedPaste && (
-        <div className="mt-4">
-          <h5>📄 Retrieved Paste:</h5>
-          <p className="border p-3">{retrievedPaste}</p>
+          <h5>✅ Paste Created!</h5>
+          <a href={shareableURL} target="_blank" rel="noopener noreferrer">{shareableURL}</a>
         </div>
       )}
     </div>

@@ -5,10 +5,11 @@ import QRCode from "./Pages/QRCode";
 import Shortener from "./Pages/Shortener";
 import IP from "./Pages/IP";
 import DNS from "./Pages/DNS";
-import File from "./Pages/FileUploader";
 import "./styles/global.css";  // ✅ Importing global CSS
 import FileUploader from "./Pages/FileUploader";
 import Pastebin from "./Pages/Pastebin";
+import ViewPaste from "./Pages/ViewPaste";
+
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/dnslookup" element={<DNS/>}/>
         <Route path="/fileuploader" element={<FileUploader/>}/>
         <Route path="/pastebin" element={<Pastebin/>}/>
+        <Route path="/paste/:pasteID" element={<ViewPaste />} />
       </Routes>
     </Router>
   );
