@@ -1,0 +1,13 @@
+# Go backend
+Backend/bin/
+Backend/vendor/
+Backend/*.exe
+Backend/*.test
+Backend/*.out
+
+# React frontend
+Frontend/node_modules/
+Frontend/build/
+Frontend/.env
+Frontend/.cache/
+Frontend/.next/
