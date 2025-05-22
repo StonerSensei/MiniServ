@@ -46,7 +46,7 @@ func main() {
 	// Starting a HTTTP Server on Port 8080
 	//corsHandler := enableCORS(r)
 	fmt.Println("Server Starting on Port 8080")
-	err = http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		fmt.Println(err)
 	}
