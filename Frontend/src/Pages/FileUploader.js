@@ -26,11 +26,15 @@ function FileUploader() {
     formData.append("file", file);
   
     try {
-      const response = await axios.post("http://localhost:8080/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        }
-      });
+  const response = await axios.post(
+    `${process.env.REACT_APP_API_URL}/upload`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }
+  );
   
       setUploadURL(response.data.url);
     } catch (err) {

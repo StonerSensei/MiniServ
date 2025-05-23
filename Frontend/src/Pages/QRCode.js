@@ -9,10 +9,13 @@ function QRCode() {
 
   const generateQR = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/generate_qr/", {
-        content,
-        file_name: fileName,
-      });
+      const response = await axios.post(
+  `${process.env.REACT_APP_API_URL}/generate_qr/`,
+  {
+    content,
+    file_name: fileName,
+  }
+);
 
       setQrUrl(response.data.url);
     } catch (error) {

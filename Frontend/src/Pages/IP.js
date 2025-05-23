@@ -11,7 +11,7 @@ function GetIP() {
         setLoading(true); // Will Start Loading 
         setError(null); // Reseting Perivous Error
         try {
-            const response = await axios.get("http://localhost:8080/get_ip_info/");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/get_ip_info/`);
             setIpInfo(response.data); // Store API repsonse in state
         }
         catch (err){
@@ -19,9 +19,6 @@ function GetIP() {
         }
         setLoading(false); // Stop Loading
     };
-    // onCLick Button below: First Disabled the button while Loading and if Loading true show Loading.... else show Get IP Info
-    // then display error if any
-    // If ipInfo is not null display the details
     return (
         <div className="ip-container">
             <p>Find Your Public Ip and GeoLocation details.</p>

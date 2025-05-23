@@ -18,11 +18,14 @@ function GetDNS(){
         setError(null);
 
         try {
-            const response = await axios.get(`http://localhost:8080/get_dns/?domain=${domain}`);
-            setDnsInfo(response.data);  
-        } catch (err) {
-            setError("Failed To Fetch DNS Info");
-        }
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_URL}/get_dns/?domain=${domain}`
+  );
+  setDnsInfo(response.data);  
+} catch (err) {
+  setError("Failed To Fetch DNS Info");
+}
+
         
         setLoading(false);
     };

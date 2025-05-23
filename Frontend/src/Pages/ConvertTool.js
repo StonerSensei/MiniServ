@@ -36,15 +36,16 @@ function ConvertTool() {
       }
 
       const res = await axios.post(
-        `http://localhost:8080/convert?input=${inputFormat}&output=${outputFormat}`,
-        input,
-        {
-          headers: {
-            "Content-Type": contentType,
-          },
-          withCredentials: true, // Important for CORS with credentials
-        }
-      );
+  `${process.env.REACT_APP_API_URL}/convert?input=${inputFormat}&output=${outputFormat}`,
+  input,
+  {
+    headers: {
+      "Content-Type": contentType,
+    },
+    withCredentials: true, // You can remove this if your backend doesn't use cookies
+  }
+);
+
       
       // Handle the response based on format
       if (typeof res.data === "object") {

@@ -4,6 +4,7 @@ Backend/vendor/
 Backend/*.exe
 Backend/*.test
 Backend/*.out
+.env
 
 # React frontend
 Frontend/node_modules/

@@ -7,21 +7,22 @@ function Pastebin() {
   const [pasteID, setPasteID] = useState(null);
   const [shareableURL, setShareableURL] = useState("");
 
-  // Create a new paste
   const createPaste = async () => {
     try {
-      const payload = {
-        content,
-      };
+      const payload = { content };
 
-      // If the user provided expiration, include it
       if (expiresInMinutes) {
         payload.expires_in_minutes = parseInt(expiresInMinutes);
       }
 
-      const response = await axios.post("http://localhost:8080/paste", payload);
-      setPasteID(response.data.id);
-      setShareableURL(`http://localhost:3000/paste/${response.data.id}`); // React side link
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/paste`,
+        payload
+      );
+
+      const id = response.data.id;
+      setPasteID(id);
+      setShareableURL(`${window.location.origin}/paste/${id}`);
     } catch (error) {
       console.error("Failed to create paste:", error);
     }
@@ -31,7 +32,6 @@ function Pastebin() {
     <div className="container text-center mt-5" style={{ maxWidth: "700px" }}>
       <h2>📜 Pastebin Clone</h2>
 
-      {/* Paste Content */}
       <textarea
         className="form-control mt-3"
         rows="6"
@@ -40,7 +40,6 @@ function Pastebin() {
         onChange={(e) => setContent(e.target.value)}
       />
 
-      {/* Expiration Input */}
       <input
         type="number"
         className="form-control mt-3"
@@ -49,15 +48,13 @@ function Pastebin() {
         onChange={(e) => setExpiresInMinutes(e.target.value)}
       />
 
-      {/* Create Paste Button */}
       <button className="btn btn-primary mt-3" onClick={createPaste}>
         Create Paste
       </button>
 
-      {/* Success Display */}
       {pasteID && (
         <div className="mt-4">
-          <h5> Paste Created!</h5>
+          <h5>✅ Paste Created!</h5>
           <a href={shareableURL} target="_blank" rel="noopener noreferrer">
             {shareableURL}
           </a>

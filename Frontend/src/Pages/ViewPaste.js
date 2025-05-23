@@ -10,7 +10,7 @@ function ViewPaste() {
   useEffect(() => {
     const fetchPaste = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/paste/${pasteID}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/paste/${pasteID}`);
         setContent(response.data);
       } catch (err) {
         setError("Paste not found");
