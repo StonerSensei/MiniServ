@@ -13,13 +13,10 @@ function ConvertTool() {
     setConverted("");
 
     try {
-      // Make sure we have valid input
       if (!input.trim()) {
         setError("Please enter some content to convert");
         return;
       }
-
-      // Set the right Content-Type for the input format
       let contentType;
       switch (inputFormat) {
         case "json":
@@ -42,12 +39,9 @@ function ConvertTool() {
     headers: {
       "Content-Type": contentType,
     },
-    withCredentials: true, // You can remove this if your backend doesn't use cookies
+    withCredentials: true,
   }
 );
-
-      
-      // Handle the response based on format
       if (typeof res.data === "object") {
         setConverted(JSON.stringify(res.data, null, 2));
       } else {
@@ -61,8 +55,6 @@ function ConvertTool() {
       );
     }
   };
-
-  // Example placeholders for each format
   const getPlaceholder = () => {
     switch (inputFormat) {
       case "json":

@@ -39,12 +39,4 @@ function GetIP() {
         </div>
     );
 }
-
-
-// How State Updates working
-/*
-setLoading(true)  start Loading
-setIpInfo(resp.data) stores API Response
-setLoading(false) stop Loading
-*/
 export default GetIP;

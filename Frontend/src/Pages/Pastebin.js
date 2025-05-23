@@ -30,7 +30,7 @@ function Pastebin() {
 
   return (
     <div className="container text-center mt-5" style={{ maxWidth: "700px" }}>
-      <h2>📜 Pastebin Clone</h2>
+      <h2>Pastebin Clone</h2>
 
       <textarea
         className="form-control mt-3"
@@ -54,7 +54,7 @@ function Pastebin() {
 
       {pasteID && (
         <div className="mt-4">
-          <h5>✅ Paste Created!</h5>
+          <h5>Paste Created!</h5>
           <a href={shareableURL} target="_blank" rel="noopener noreferrer">
             {shareableURL}
           </a>

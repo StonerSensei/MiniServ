@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "./styles/QRCode.css";  // ✅ Importing CSS
+import "./styles/QRCode.css"; 
 
 function QRCode() {
   const [content, setContent] = useState("");

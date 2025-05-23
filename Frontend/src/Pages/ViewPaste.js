@@ -22,7 +22,7 @@ function ViewPaste() {
 
   return (
     <div className="container text-center mt-5">
-      <h2>📄 Viewing Paste: {pasteID}</h2>
+      <h2>Viewing Paste: {pasteID}</h2>
       {error ? (
         <p className="text-danger">{error}</p>
       ) : (
