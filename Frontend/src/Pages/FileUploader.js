@@ -7,13 +7,9 @@ function FileUploader() {
   const [uploadURL, setUploadURL] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // Handle file selection
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-
-  // Upload file to the backend
   const handleUpload = async () => {
     if (!file) {
       alert("Please select a file to upload!");
@@ -44,9 +40,6 @@ function FileUploader() {
   
     setLoading(false);
   };
-  
-  
-
   return (
     <div className="container mt-5 text-center">
       <h2>📂 Temporary File Uploader</h2>
@@ -61,7 +54,7 @@ function FileUploader() {
 
       {uploadURL && (
         <div className="mt-4">
-          <h5>✅ File Uploaded Successfully!</h5>
+          <h5>File Uploaded Successfully!</h5>
           <p><strong>Download Link (Expires in 5 minutes):</strong></p>
           <a href={uploadURL} target="_blank" rel="noopener noreferrer">
             {uploadURL}
