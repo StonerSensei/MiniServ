@@ -36,7 +36,7 @@ func EnableCORS(next http.HandlerFunc) http.HandlerFunc {
 		}
 
 		// Allow Vercel preview deployments
-		if !isAllowed && strings.Contains(origin, "vercel.app") {
+		if isAllowed || strings.Contains(origin, "vercel.app") {
 			w.Header().Set("Access-Control-Allow-Origin", origin)
 			w.Header().Set("Access-Control-Allow-Credentials", "true")
 		}
