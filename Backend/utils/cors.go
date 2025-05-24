@@ -10,21 +10,19 @@ func EnableCORS(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get("Origin")
 
-		// Get allowed origins from environment or use defaults
 		allowedOriginsEnv := os.Getenv("ALLOWED_ORIGINS")
 		var allowedOrigins []string
 
 		if allowedOriginsEnv != "" {
 			allowedOrigins = strings.Split(allowedOriginsEnv, ",")
 		} else {
-			// Default allowed origins
+
 			allowedOrigins = []string{
-				"http://localhost:3000",              // Local development
-				"https://your-vercel-app.vercel.app", // Replace with your actual Vercel URL
+				"http://localhost:3000",
+				"https://mini-serv-frontend.vercel.app",
 			}
 		}
 
-		// Check if origin is in allowed list
 		isAllowed := false
 		for _, allowedOrigin := range allowedOrigins {
 			if origin == strings.TrimSpace(allowedOrigin) {

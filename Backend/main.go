@@ -23,10 +23,7 @@ func main() {
 		fmt.Println("No .env file found, using environment variables")
 	}
 
-	// Initialize database
 	config.InitDB()
-
-	// Routes with CORS enabled
 	http.HandleFunc("/", handlers.RootPage)
 	http.HandleFunc("/generate_qr/", utils.EnableCORS(handlers.QRCodeHandler))
 	http.HandleFunc("/get_ip_info/", utils.EnableCORS(handlers.IPHandler))
@@ -37,18 +34,15 @@ func main() {
 	http.HandleFunc("/paste/", utils.EnableCORS(handlers.GetPasteHandler))
 	http.HandleFunc("/convert", utils.EnableCORS(handlers.ConvertHandler))
 
-	// Static file server for QR codes
 	fs := http.FileServer(http.Dir("qrcode"))
 	http.Handle("/qrcode/", utils.EnableCORS(func(w http.ResponseWriter, r *http.Request) {
 		http.StripPrefix("/qrcode/", fs).ServeHTTP(w, r)
 	}))
 
-	// Start cleanup goroutines
 	go utils.CleanUpUploads()
 	go utils.CleanUpQR()
 	go utils.CleanUpPaste()
 
-	// Get port from environment variable (Render sets this automatically)
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080" // Default for local development
