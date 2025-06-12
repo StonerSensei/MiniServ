@@ -3,11 +3,12 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 	"urlShortner/utils"
 )
 
 func QRCodeHandler(w http.ResponseWriter, r *http.Request) {
-	var data struct { // struct to hold json data fyrom the frontend
+	var data struct { // struct to hold json data from the frontend
 		Content  string `json:"content"`
 		FileName string `json:"file_name"`
 	}
@@ -21,12 +22,19 @@ func QRCodeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unable to Generate the QR Code", http.StatusBadRequest)
 		return
 	}
+
+	// Get base URL from environment variable or use default
+	baseURL := os.Getenv("BASE_URL")
+	if baseURL == "" {
+		baseURL = "http://localhost:8080" // fallback for local development
+	}
+
 	res := struct { // creating a Response Object
 		Message string `json:"message"`
 		URL     string `json:"url"`
 	}{
 		Message: "QR Code generated successfully!",
-		URL:     "http://localhost:8080/qrcode/" + data.FileName,
+		URL:     baseURL + "/qrcode/" + data.FileName,
 	}
 	utils.WriteJSON(w, res)
 }
